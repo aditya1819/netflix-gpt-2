@@ -1,0 +1,16 @@
+Features
+- Login/Sign up page
+  - sign in / sign up from
+  - after successful login, redirect to browse page
+
+- Browse (Authn)
+  - header
+  - main movie
+    - tailer in bg
+    - title & desc
+    - movie suggestion
+      - movie list * n
+
+- Netflix GPT
+  - Search bar
+  - Movie suggestion
