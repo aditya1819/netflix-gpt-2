@@ -1,11 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Header from './Header';
+import { isDataValid } from '../utils/LoginValidation';
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
 
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const email = useRef(null);
+  const password = useRef(null);
+  const fullName = useRef(null);
+
+  const handleSubmit = () => {
+    const message = isDataValid(
+      email.current.value,
+      password.current.value,
+      fullName?.current?.value,
+      isSignIn
+    );
+
+    console.log(message);
+    setErrorMessage(message);
+  };
+
   const toggleForm = () => {
     setIsSignIn(!isSignIn);
+    setErrorMessage(null);
   };
 
   return (
@@ -16,22 +36,23 @@ const Login = () => {
 
       <div className="flex items-center justify-center h-screen">
         <div className="w-1/4 bg-black bg-opacity-75 p-14">
-          <form action="" className="">
+          <form onSubmit={(e) => e.preventDefault()}>
             <div className="font-semibold text-3xl text-white m-2 mb-6">
               {isSignIn ? 'Sign In' : 'Sign Up'}
             </div>
             {!isSignIn && (
               <div className="flex justify-center">
                 <input
+                  ref={fullName}
                   type="text"
                   placeholder="Full Name"
                   className="p-3 m-2 rounded w-full bg-zinc-700 text-white"
                 />
               </div>
             )}
-
             <div className="flex justify-center">
               <input
+                ref={email}
                 type="text"
                 placeholder="Email Address"
                 className="p-3 m-2 rounded w-full bg-zinc-700 text-white"
@@ -39,13 +60,23 @@ const Login = () => {
             </div>
             <div className="flex justify-center">
               <input
+                ref={password}
                 type="password"
                 placeholder="Password"
                 className="p-3 m-2 rounded w-full  bg-zinc-700 text-white"
               />
             </div>
+
+            <div className="m-2 mt-0 text-red-500">
+              <span className=""></span>
+              {errorMessage}
+            </div>
+
             <div className="flex justify-center">
-              <button className="p-3 m-2 my-6 w-full bg-red-700 text-white rounded">
+              <button
+                className="p-3 m-2 my-6 w-full bg-red-700 text-white rounded"
+                onClick={handleSubmit}
+              >
                 {isSignIn ? 'Sign In' : 'Sign Up'}
               </button>
             </div>
