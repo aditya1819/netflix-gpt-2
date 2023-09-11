@@ -1,10 +1,14 @@
-import { signOut } from 'firebase/auth';
-import React from 'react';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import React, { useEffect } from 'react';
 import { auth } from '../utils/firebase';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser, removeUser } from '../utils/store/userSlice';
 
 const Header = () => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const location = useLocation();
 
@@ -12,8 +16,6 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        // dispatch will happen from onAuthChange handler
-        navigate('/');
       })
       .catch((error) => {
         // An error happened.
@@ -21,6 +23,19 @@ const Header = () => {
       });
   };
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid, email, displayName }));
+
+        navigate('/browse');
+      } else {
+        dispatch(removeUser());
+        navigate('/');
+      }
+    });
+  }, []);
   return (
     <div className="bg-gradient-to-b from-black w-full absolute">
       <div className="flex justify-between">
