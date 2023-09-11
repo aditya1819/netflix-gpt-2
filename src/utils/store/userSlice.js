@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import constant from '../constants';
+import constants from '../constants';
 
 const userSlice = createSlice({
-  name: constant.USER_SLICE,
+  name: constants.USER_SLICE,
   initialState: null,
   reducers: {
     addUser: (state, action) => {
