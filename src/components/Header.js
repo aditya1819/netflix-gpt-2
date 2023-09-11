@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid, email, displayName }));
@@ -35,6 +35,8 @@ const Header = () => {
         navigate('/');
       }
     });
+
+    return () => unsubscribe();
   }, []);
   return (
     <div className="bg-gradient-to-b from-black w-full absolute">
