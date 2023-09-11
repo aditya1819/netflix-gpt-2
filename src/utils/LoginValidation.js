@@ -1,11 +1,14 @@
+import constant from './constants';
+
 export const isDataValid = (email, password, name, isSignIn) => {
   // Regular expression for a valid email address
-  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const emailRegex = constant.EMAIL_REGEX;
 
   // Regular expression for a valid password (at least 8 characters, containing at least one uppercase letter, one lowercase letter, and one digit)
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+  const passwordRegex = constant.PASSWORD_REGEX;
 
-  const nameRegex = /^[A-Za-z\s'-]{3,}$/;
+  // Regex for valid name min 3 char and space allowed
+  const nameRegex = constant.NAME_REGEX;
 
   if (!emailRegex.test(email)) {
     return 'Invalid email address';

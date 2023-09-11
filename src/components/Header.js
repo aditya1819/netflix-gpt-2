@@ -1,10 +1,15 @@
-import { signOut } from 'firebase/auth';
-import React from 'react';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import React, { useEffect } from 'react';
 import { auth } from '../utils/firebase';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser, removeUser } from '../utils/store/userSlice';
+import constant from '../utils/constants';
 
 const Header = () => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const location = useLocation();
 
@@ -12,8 +17,6 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        // dispatch will happen from onAuthChange handler
-        navigate('/');
       })
       .catch((error) => {
         // An error happened.
@@ -21,12 +24,27 @@ const Header = () => {
       });
   };
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid, email, displayName }));
+
+        navigate('/browse');
+      } else {
+        dispatch(removeUser());
+        navigate('/');
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
   return (
     <div className="bg-gradient-to-b from-black w-full absolute">
       <div className="flex justify-between">
         <img
           className="w-48 p-4 m-4 ml-20"
-          src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+          src={constant.NETFLIX_LOGO}
           alt="netflix-logo"
         />
 
@@ -34,7 +52,7 @@ const Header = () => {
           <div className="flex">
             <img
               className="my-auto p-2 m-2 h-10"
-              src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+              src={constant.USER_LOGO}
               alt="usericon"
             />
             <button
