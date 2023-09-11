@@ -44,7 +44,7 @@ const Header = () => {
     <div className="bg-gradient-to-b from-black w-full absolute">
       <div className="flex justify-between">
         <img
-          className="w-48 p-4 m-4 ml-20"
+          className="w-48 p-4 m-4 ml-20 z-10"
           src={constants.NETFLIX_LOGO}
           alt="netflix-logo"
         />
@@ -52,12 +52,12 @@ const Header = () => {
         {location.pathname === '/browse' && (
           <div className="flex">
             <img
-              className="my-auto p-2 m-2 h-10"
+              className="my-auto p-2 m-2 h-10 z-10"
               src={constants.USER_LOGO}
               alt="usericon"
             />
             <button
-              className="bg-red-600 text-white my-auto p-2 m-2 rounded-lg hover:bg-red-700"
+              className="bg-red-600 text-white my-auto p-2 m-2 rounded-lg z-10 hover:bg-red-700"
               onClick={handleSignOut}
             >
               Sign Out

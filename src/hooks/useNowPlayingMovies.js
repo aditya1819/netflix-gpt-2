@@ -13,7 +13,6 @@ const useNowPlayingMovies = () => {
     );
 
     data = await data.json();
-    console.log(data.results);
     dispatch(addNowPlayingMovies(data.results));
   };
 
