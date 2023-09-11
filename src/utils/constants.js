@@ -1,4 +1,4 @@
-const constant = Object.freeze({
+const constants = Object.freeze({
   // validation
   EMAIL_REGEX: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
   PASSWORD_REGEX: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
@@ -11,6 +11,7 @@ const constant = Object.freeze({
 
   // redux
   USER_SLICE: 'user',
+  MOVIES_SLICE: 'movies',
 
   // tmdb
   TMDB_BASE_URL: 'https://api.themoviedb.org/3',
@@ -23,4 +24,4 @@ const constant = Object.freeze({
   }
 });
 
-export default constant;
+export default constants;

@@ -1,14 +1,12 @@
-import constant from './constants';
+import constants from './constants';
 
 export const getNowPlayingMovies = async () => {
-  console.log(constant.API_OPTIONS);
-
-  const data = await fetch(
-    `${constant.TMDB_BASE_URL}/movie/now_playing`,
-    constant.API_OPTIONS
+  let data = await fetch(
+    `${constants.TMDB_BASE_URL}/movie/now_playing`,
+    constants.API_OPTIONS
   );
 
-  const jsonData = await data.json()
+  data = await data.json();
 
-  console.log(jsonData);
+  return data.results;
 };

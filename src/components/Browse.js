@@ -1,16 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from './Header';
-import { getNowPlayingMovies } from '../utils/tmdb-services';
+import useNowPlayingMovies from '../hooks/useNowPlayingMovies';
 
 const Browse = () => {
-  useEffect(() => {
-    const getData = async () => {
-      const data = await getNowPlayingMovies();
-      console.log(data);
-    };
-
-    getData();
-  }, []);
+  useNowPlayingMovies();
 
   return (
     <div>

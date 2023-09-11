@@ -4,7 +4,7 @@ import { auth } from '../utils/firebase';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../utils/store/userSlice';
-import constant from '../utils/constants';
+import constants from '../utils/constants';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -39,12 +39,13 @@ const Header = () => {
 
     return () => unsubscribe();
   }, []);
+
   return (
     <div className="bg-gradient-to-b from-black w-full absolute">
       <div className="flex justify-between">
         <img
           className="w-48 p-4 m-4 ml-20"
-          src={constant.NETFLIX_LOGO}
+          src={constants.NETFLIX_LOGO}
           alt="netflix-logo"
         />
 
@@ -52,7 +53,7 @@ const Header = () => {
           <div className="flex">
             <img
               className="my-auto p-2 m-2 h-10"
-              src={constant.USER_LOGO}
+              src={constants.USER_LOGO}
               alt="usericon"
             />
             <button
