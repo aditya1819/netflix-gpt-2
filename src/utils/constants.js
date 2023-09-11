@@ -10,7 +10,17 @@ const constant = Object.freeze({
   USER_LOGO: 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png',
 
   // redux
-  USER_SLICE: 'user'
+  USER_SLICE: 'user',
+
+  // tmdb
+  TMDB_BASE_URL: 'https://api.themoviedb.org/3',
+  API_OPTIONS: {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      authorization: `Bearer ${process.env.REACT_APP_TMDB_ACCESS_TOKEN}`
+    }
+  }
 });
 
 export default constant;
