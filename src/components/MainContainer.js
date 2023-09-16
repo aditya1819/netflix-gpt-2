@@ -17,8 +17,6 @@ const MainContainer = () => {
     setMovieId(id);
   }, []);
 
-  console.log(movieId)
-
   if (!movies) return;
 
   const mainMovie = movies.at(movieId);

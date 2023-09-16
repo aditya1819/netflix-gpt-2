@@ -21,7 +21,8 @@ const constants = Object.freeze({
       accept: 'application/json',
       authorization: `Bearer ${process.env.REACT_APP_TMDB_ACCESS_TOKEN}`
     }
-  }
+  },
+  IMAGES_BASE_URL: 'https://image.tmdb.org/t/p/w780'
 });
 
 export default constants;
