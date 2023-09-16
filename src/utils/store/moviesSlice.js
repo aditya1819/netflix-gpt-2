@@ -1,15 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
-import constants from '../constants';
+import { createSlice, current } from '@reduxjs/toolkit';
+import constants, { categoryArray } from '../constants';
+
+const categoryObject = {};
+
+categoryArray.forEach((category) => {
+  categoryObject[category] = null;
+});
 
 const moviesSlice = createSlice({
   name: constants.MOVIES_SLICE,
   initialState: {
-    nowPlayingMovies: null,
+    ...categoryObject,
     trailerVideo: null
   },
   reducers: {
-    addNowPlayingMovies: (state, action) => {
-      state.nowPlayingMovies = action.payload;
+    addMovies: (state, action) => {
+      state[action.payload.category] = action.payload.movies;
     },
     addMovieTrailer: (state, action) => {
       state.trailerVideo = action.payload;
@@ -17,6 +23,6 @@ const moviesSlice = createSlice({
   }
 });
 
-export const { addNowPlayingMovies, addMovieTrailer } = moviesSlice.actions;
+export const { addMovies, addMovieTrailer } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

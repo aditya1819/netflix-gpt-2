@@ -1,7 +1,29 @@
 import React from 'react';
+import MovieList from './MovieList';
+import { useSelector } from 'react-redux';
 
-const SecondaryContainer = () => {
-  return <div>SecondaryContainer</div>;
+const getTitle = (category) => {
+  const words = category
+    .split('_')
+    .map((word) => word.at(0).toUpperCase() + word.slice(1));
+
+  return words.join(' ');
+};
+
+const SecondaryContainer = ({ categoryArray }) => {
+  const movies = useSelector((store) => store.movies);
+
+  if (movies) {
+    return (
+      <div className="bg-black">
+        <div className="-mt-52 relative z-20">
+          {categoryArray.map((category) => (
+            <MovieList title={getTitle(category)} movies={movies[category]} />
+          ))}
+        </div>
+      </div>
+    );
+  }
 };
 
 export default SecondaryContainer;
