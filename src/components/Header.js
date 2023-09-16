@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../utils/store/userSlice';
 import constants from '../utils/constants';
+import { toggleGptSearch } from '../utils/store/gptSlice';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -40,6 +41,10 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  const handleGptToggle = () => {
+    dispatch(toggleGptSearch());
+  };
+
   return (
     <div className="bg-gradient-to-b from-black w-full absolute">
       <div className="flex justify-between">
@@ -51,6 +56,13 @@ const Header = () => {
 
         {location.pathname === '/browse' && (
           <div className="flex">
+            <button
+              className="bg-slate-700 bg-opacity-50  text-white my-auto p-2 m-2 rounded-lg z-10 hover:bg-slate-800"
+              onClick={handleGptToggle}
+            >
+              GPT Search
+            </button>
+
             <img
               className="my-auto p-2 m-2 h-10 z-10"
               src={constants.USER_LOGO}

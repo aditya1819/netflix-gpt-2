@@ -12,6 +12,7 @@ const constants = Object.freeze({
   // redux
   USER_SLICE: 'user',
   MOVIES_SLICE: 'movies',
+  GPT_SLICE: 'gpt',
 
   // tmdb
   TMDB_BASE_URL: 'https://api.themoviedb.org/3',

@@ -85,7 +85,7 @@ const Login = () => {
 
   return (
     <div>
-      <div className="login">
+      <div className="nf-image-cover">
         <div>
           <Header />
         </div>
