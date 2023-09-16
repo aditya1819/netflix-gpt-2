@@ -50,7 +50,12 @@ const constants = Object.freeze({
       locale: 'de-de',
       name: 'German'
     }
-  ]
+  ],
+
+  // gpt query
+  getGptQuery(query) {
+    return `Act as a movie recommendation system and suggest some movies for the query: ${query}. Give a comma separated list of 5 movies names only and prefer suggesting Hollywood and Bollywood movies. In reply just provide an array of movies names`;
+  }
 });
 
 export const categoryArray = [

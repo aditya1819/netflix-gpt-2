@@ -17,8 +17,6 @@ const Header = () => {
 
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
-  console.log(showGptSearch);
-
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
