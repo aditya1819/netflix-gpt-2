@@ -1,17 +1,18 @@
 import React from 'react';
 import Header from './Header';
-import useNowPlayingMovies from '../hooks/useNowPlayingMovies';
+import useFetchMovies from '../hooks/useFetchMovies';
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
+import constants, { categoryArray } from '../utils/constants';
 
 const Browse = () => {
-  useNowPlayingMovies();
+  useFetchMovies(categoryArray);
 
   return (
     <div>
       <Header />
       <MainContainer />
-      <SecondaryContainer />
+      <SecondaryContainer categoryArray={categoryArray} />
     </div>
   );
 };
