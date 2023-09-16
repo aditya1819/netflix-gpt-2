@@ -9,6 +9,7 @@ import {
 import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/store/userSlice';
+import { setShowGptSearch } from '../utils/store/gptSlice';
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -70,11 +71,15 @@ const Login = () => {
         auth,
         email.current.value,
         password.current.value
-      ).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        setErrorMessage(`${errorCode}: ${errorMessage}`);
-      });
+      )
+        .then(() => {
+          dispatch(setShowGptSearch(false));
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(`${errorCode}: ${errorMessage}`);
+        });
     }
   };
 

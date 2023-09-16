@@ -2,7 +2,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import React, { useEffect } from 'react';
 import { auth } from '../utils/firebase';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/store/userSlice';
 import constants from '../utils/constants';
 import { toggleGptSearch } from '../utils/store/gptSlice';
@@ -14,6 +14,10 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const location = useLocation();
+
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+
+  console.log(showGptSearch);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -61,20 +65,22 @@ const Header = () => {
 
         {location.pathname === '/browse' && (
           <div className="flex">
-            <div className="my-auto z-10">
-              <select className="p-2 m-2 z-10" onChange={handleLocaleChange}>
-                {constants.SUPPORTED_LOCALES.map((item) => (
-                  <option key={item.locale} value={item.locale}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+            {showGptSearch && (
+              <div className="my-auto z-10">
+                <select className="p-2 m-2 z-10" onChange={handleLocaleChange}>
+                  {constants.SUPPORTED_LOCALES.map((item) => (
+                    <option key={item.locale} value={item.locale}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
             <button
               className="bg-slate-700 bg-opacity-50  text-white my-auto p-2 m-2 rounded-lg z-10 hover:bg-slate-800"
               onClick={handleGptToggle}
             >
-              GPT Search
+              {showGptSearch ? 'Movies' : 'GPT Search'}
             </button>
 
             <img
