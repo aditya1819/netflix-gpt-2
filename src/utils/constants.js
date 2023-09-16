@@ -13,6 +13,7 @@ const constants = Object.freeze({
   USER_SLICE: 'user',
   MOVIES_SLICE: 'movies',
   GPT_SLICE: 'gpt',
+  CONFIG_SLICE: 'config',
 
   // tmdb
   TMDB_BASE_URL: 'https://api.themoviedb.org/3',
@@ -29,7 +30,27 @@ const constants = Object.freeze({
   POPULER: 'popular',
   NOW_PLAYING: 'now_playing',
   TOP_RATED: 'top_rated',
-  UPCOMING: 'upcoming'
+  UPCOMING: 'upcoming',
+
+  // supported languages
+  SUPPORTED_LOCALES: [
+    {
+      locale: 'en-in',
+      name: 'English'
+    },
+    {
+      locale: 'hi-in',
+      name: 'Hindi'
+    },
+    {
+      locale: 'es-es',
+      name: 'Spanish'
+    },
+    {
+      locale: 'de-de',
+      name: 'German'
+    }
+  ]
 });
 
 export const categoryArray = [

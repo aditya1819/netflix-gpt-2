@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../utils/store/userSlice';
 import constants from '../utils/constants';
 import { toggleGptSearch } from '../utils/store/gptSlice';
+import { setLocaleCode } from '../utils/store/configSlice';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -41,6 +42,10 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  const handleLocaleChange = (e) => {
+    dispatch(setLocaleCode(e.target.value));
+  };
+
   const handleGptToggle = () => {
     dispatch(toggleGptSearch());
   };
@@ -56,6 +61,15 @@ const Header = () => {
 
         {location.pathname === '/browse' && (
           <div className="flex">
+            <div className="my-auto z-10">
+              <select className="p-2 m-2 z-10" onChange={handleLocaleChange}>
+                {constants.SUPPORTED_LOCALES.map((item) => (
+                  <option key={item.locale} value={item.locale}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
             <button
               className="bg-slate-700 bg-opacity-50  text-white my-auto p-2 m-2 rounded-lg z-10 hover:bg-slate-800"
               onClick={handleGptToggle}
