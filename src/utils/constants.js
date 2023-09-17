@@ -12,6 +12,8 @@ const constants = Object.freeze({
   // redux
   USER_SLICE: 'user',
   MOVIES_SLICE: 'movies',
+  GPT_SLICE: 'gpt',
+  CONFIG_SLICE: 'config',
 
   // tmdb
   TMDB_BASE_URL: 'https://api.themoviedb.org/3',
@@ -28,7 +30,32 @@ const constants = Object.freeze({
   POPULER: 'popular',
   NOW_PLAYING: 'now_playing',
   TOP_RATED: 'top_rated',
-  UPCOMING: 'upcoming'
+  UPCOMING: 'upcoming',
+
+  // supported languages
+  SUPPORTED_LOCALES: [
+    {
+      locale: 'en-in',
+      name: 'English'
+    },
+    {
+      locale: 'hi-in',
+      name: 'Hindi'
+    },
+    {
+      locale: 'es-es',
+      name: 'Spanish'
+    },
+    {
+      locale: 'de-de',
+      name: 'German'
+    }
+  ],
+
+  // gpt query
+  getGptQuery(query) {
+    return `Act as a movie recommendation system and suggest some movies for the query: ${query}. Give a comma separated list of 5 movies names only and prefer suggesting Hollywood and Bollywood movies. In reply just provide an array of movies names`;
+  }
 });
 
 export const categoryArray = [
