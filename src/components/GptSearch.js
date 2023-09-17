@@ -10,15 +10,13 @@ const GptSearch = () => {
 
   return (
     <div className="nf-image-cover">
-      <div className="flex flex-col items-center justify-center h-screen">
-        <div className="h-28">
+      <div className="h-screen">
+        <div className="flex flex-col items-center justify-center pt-36">
           <GptSearchBar />
         </div>
-        {movies && (
-          <div>
-            <GptSuggestion moviesString={movies} />
-          </div>
-        )}
+        <div className="">
+          {movies && <GptSuggestion moviesString={movies} />}
+        </div>
       </div>
     </div>
   );
