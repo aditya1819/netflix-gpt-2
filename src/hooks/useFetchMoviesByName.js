@@ -8,9 +8,8 @@ const useFetchMoviesByName = (names) => {
 
   const getMoviesByName = async () => {
     const getPromises = [];
-    console.log('names sadfsdf', names);
-    console.log(typeof names);
 
+    console.log(names);
     // /search/movie?include_adult=false&language=en-US&page=1
 
     names.forEach((name) => {
@@ -26,8 +25,6 @@ const useFetchMoviesByName = (names) => {
     });
 
     const responses = await Promise.all(getPromises);
-
-    console.log(responses);
 
     const movies = [];
 
