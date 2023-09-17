@@ -11,7 +11,9 @@ const moviesSlice = createSlice({
   name: constants.MOVIES_SLICE,
   initialState: {
     ...categoryObject,
-    trailerVideo: null
+    trailerVideo: null,
+    gptSearchMovies: null,
+    gptSearchNames: null
   },
   reducers: {
     addMovies: (state, action) => {
@@ -19,10 +21,21 @@ const moviesSlice = createSlice({
     },
     addMovieTrailer: (state, action) => {
       state.trailerVideo = action.payload;
+    },
+    setGptSearchMovies: (state, action) => {
+      state.gptSearchMovies = action.payload;
+    },
+    setGptSearchNames: (state, action) => {
+      state.gptSearchNames = action.payload;
     }
   }
 });
 
-export const { addMovies, addMovieTrailer } = moviesSlice.actions;
+export const {
+  addMovies,
+  addMovieTrailer,
+  setGptSearchMovies,
+  setGptSearchNames
+} = moviesSlice.actions;
 
 export default moviesSlice.reducer;
