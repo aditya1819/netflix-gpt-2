@@ -96,7 +96,7 @@ const Login = () => {
         </div>
 
         <div className="flex items-center justify-center h-screen">
-          <div className="w-1/4 bg-black bg-opacity-75 p-14">
+          <div className="w-10/12 md:w-1/4 bg-black bg-opacity-75 p-14">
             <form onSubmit={(e) => e.preventDefault()}>
               <div className="font-semibold text-3xl text-white m-2 mb-6">
                 {isSignIn ? 'Sign In' : 'Sign Up'}

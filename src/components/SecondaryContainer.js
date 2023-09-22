@@ -15,8 +15,8 @@ const SecondaryContainer = ({ categoryArray }) => {
 
   if (movies) {
     return (
-      <div className="bg-black">
-        <div className="-mt-52 relative z-20">
+      <div className="pb-10 md:pb-0 bg-black">
+        <div className="md:-mt-52 relative z-20">
           {categoryArray.map((category) => (
             <MovieList title={getTitle(category)} movies={movies[category]} />
           ))}
