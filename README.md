@@ -27,8 +27,8 @@ Follow these steps to run the project locally:
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/your-username/your-project.git
-   cd your-project
+   git clone https://github.com/aditya1819/netflix-gpt-2.git
+   cd netflix-gpt-2
    ```
 
 2. Install dependencies
