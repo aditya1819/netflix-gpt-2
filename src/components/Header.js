@@ -54,9 +54,9 @@ const Header = () => {
 
   return (
     <div className="bg-gradient-to-b from-black w-full absolute">
-      <div className="flex justify-between">
+      <div className="flex justify-between flex-col md:flex-row">
         <img
-          className="w-48 p-4 m-4 ml-20 z-10"
+          className="w-48 p-2 m-2 ml-20 z-10"
           src={constants.NETFLIX_LOGO}
           alt="netflix-logo"
         />
