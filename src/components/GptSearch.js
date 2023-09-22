@@ -11,7 +11,7 @@ const GptSearch = () => {
   return (
     <div className="nf-image-cover">
       <div className="h-screen">
-        <div className="flex flex-col items-center justify-center pt-36">
+        <div className="flex flex-col items-center justify-center pt-60 md:pt-36">
           <GptSearchBar />
         </div>
         <div className="">
