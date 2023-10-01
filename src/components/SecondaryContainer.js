@@ -18,7 +18,11 @@ const SecondaryContainer = ({ categoryArray }) => {
       <div className="pb-10 md:pb-0 bg-black">
         <div className="md:-mt-52 relative z-20">
           {categoryArray.map((category) => (
-            <MovieList title={getTitle(category)} movies={movies[category]} />
+            <MovieList
+              key={category}
+              title={getTitle(category)}
+              movies={movies[category]}
+            />
           ))}
         </div>
       </div>

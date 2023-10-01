@@ -42,7 +42,7 @@ const Header = () => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [dispatch, navigate]);
 
   const handleLocaleChange = (e) => {
     dispatch(setLocaleCode(e.target.value));

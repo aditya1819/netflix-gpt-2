@@ -8,26 +8,25 @@ const useMovieTrailer = (id) => {
 
   const trailerExists = useSelector((store) => store.movies.trailerVideo);
 
-  const getMovieVideos = async () => {
-    let data = await fetch(
-      `${constants.TMDB_BASE_URL}/movie/${id}/videos`,
-      constants.API_OPTIONS
-    );
-
-    data = await data.json();
-
-    let filteredData = data.results.filter((item) => item.type === 'Trailer');
-
-    if (!filteredData) {
-      filteredData = data;
-    }
-
-    dispatch(addMovieTrailer(filteredData[0]));
-  };
-
   useEffect(() => {
+    const getMovieVideos = async () => {
+      let data = await fetch(
+        `${constants.TMDB_BASE_URL}/movie/${id}/videos`,
+        constants.API_OPTIONS
+      );
+
+      data = await data.json();
+
+      let filteredData = data.results.filter((item) => item.type === 'Trailer');
+
+      if (!filteredData) {
+        filteredData = data;
+      }
+
+      dispatch(addMovieTrailer(filteredData[0]));
+    };
     !trailerExists && getMovieVideos();
-  }, []);
+  }, [dispatch, id, trailerExists]);
 };
 
 export default useMovieTrailer;
